@@ -32,6 +32,7 @@ export function BlockchainVerificationModal({
   const [isVerifying, setIsVerifying] = useState(false);
 
   const handleCopyHash = () => {
+    if (!data?.transactionHash) return;
     navigator.clipboard.writeText(data.transactionHash);
     toast({
       title: "Hash Copied",
@@ -50,6 +51,8 @@ export function BlockchainVerificationModal({
       });
     }, 2000);
   };
+
+  if (!data) return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
